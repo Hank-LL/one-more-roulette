@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using OneMoreRoulette.Config;
+using OneMoreRoulette.Model;
 
 namespace OneMoreRoulette.UI
 {
