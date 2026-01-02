@@ -1,7 +1,6 @@
 # セットアップと動作確認手順（日本語）
 
 このドキュメントは **ONE MORE ROULETTE** のスクリプト導入手順をまとめたものです。
-UniTask / R3 / DOTween / TMP の導入はプロジェクト側で行ってください（本リポジトリでは追加していません）。
 
 ## 必須スクリプト一覧
 - `Assets/Scripts/Config/GameConfig.cs` : ルール・報酬テーブルを保持する ScriptableObject。

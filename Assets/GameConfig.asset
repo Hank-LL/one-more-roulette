@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e3da3a09cbc8e478513997104dd896, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::OneMoreRoulette.Config.GameConfig
+  maxRounds: 5
+  deadLimit: 2
+  cylinderSize: 6
+  carryRate: 0.5
+  rankCap: 10
+  rankToMultiplier:
+  - 1
+  - 1.15
+  - 1.35
+  - 1.6
+  - 1.9
+  - 2.25
+  - 2.7
+  - 3.25
+  - 3.95
+  - 4.8
+  - 5.8
+  rewardBandsByK:
+  - K: 1
+    Entries:
+    - Type: 0
+      BaseReward: 20
+      Weight: 65
+    - Type: 1
+      BaseReward: 50
+      Weight: 30
+    - Type: 2
+      BaseReward: 120
+      Weight: 5
+  - K: 2
+    Entries:
+    - Type: 0
+      BaseReward: 40
+      Weight: 60
+    - Type: 1
+      BaseReward: 90
+      Weight: 32
+    - Type: 2
+      BaseReward: 200
+      Weight: 8
+  - K: 3
+    Entries:
+    - Type: 0
+      BaseReward: 60
+      Weight: 55
+    - Type: 1
+      BaseReward: 140
+      Weight: 35
+    - Type: 2
+      BaseReward: 320
+      Weight: 10
+  - K: 4
+    Entries:
+    - Type: 0
+      BaseReward: 90
+      Weight: 50
+    - Type: 1
+      BaseReward: 200
+      Weight: 37
+    - Type: 2
+      BaseReward: 480
+      Weight: 13
+  - K: 5
+    Entries:
+    - Type: 0
+      BaseReward: 120
+      Weight: 45
+    - Type: 1
+      BaseReward: 280
+      Weight: 40
+    - Type: 2
+      BaseReward: 650
+      Weight: 15
