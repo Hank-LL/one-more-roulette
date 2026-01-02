@@ -21,14 +21,43 @@
    - `Reward Bands By K`（k=1..5 の報酬エントリ）
 
 ## シーンへの配置
-1. 空の GameObject を作成し `RunController` をアタッチ。
-   - `_config` に作成した **GameConfig** を設定。
-   - `_view` に `GameView`（または継承クラス）を設定。
-   - `_uiBinder` に `UiBinder` を設定。
-2. UI 用 GameObject に `UiBinder` をアタッチし、以下をシリアライズフィールドに割り当て:
-   - `_oneMoreButton`, `_stopButton`（クリックは Decision ステート時のみ通過）
-   - テキスト: `_roundText`, `_deadText`, `_bulletText`, `_rankText`, `_multiplierText`, `_carryNextText`, `_roundScoreText`, `_totalScoreText`
-3. 必要なら `GameView` を継承してアニメーションを実装し、`RunController._view` に差し替え。
+`RunController`・`GameView`・`UiBinder` の 3 コンポーネントがそろえばゲームループが動きます。以下のような最小ヒエラルキーを推奨します。
+
+```
+GameRoot (Empty)
+├── RunController (Component)
+├── GameView (Component)
+└── UiCanvas (Canvas)
+    └── UiBinder (Component)
+        ├── Buttons ... OneMoreButton / StopButton
+        └── Texts   ... Round / Dead / Bullet / Rank / Multiplier / CarryNext / RoundScore / TotalScore
+```
+
+1. **GameRoot のセットアップ**
+   - 空の GameObject を `GameRoot` とし、`RunController` を追加。演出がシンプルなら同じオブジェクトに `GameView` も追加しておくと参照がずれません。
+   - `RunController._config` に作成済みの **GameConfig** を drag & drop。
+   - `RunController._view` には同一オブジェクト上の `GameView` を drag & drop。
+   - `RunController._uiBinder` には後述の `UiCanvas` 配下の `UiBinder` を設定。
+
+2. **UI（UiCanvas）のセットアップ**
+   - Canvas を `UiCanvas` として作成（推奨: Screen Space - Overlay）。イベント受信用に `Graphic Raycaster` と `EventSystem` があることを確認。
+   - `UiCanvas` に `UiBinder` をアタッチ。
+   - ボタン: `_oneMoreButton`, `_stopButton` に Unity UI Button コンポーネントを割り当てる（Decision ステート時のみクリックが反映）。
+   - テキスト: `_roundText`, `_deadText`, `_bulletText`, `_rankText`, `_multiplierText`, `_carryNextText`, `_roundScoreText`, `_totalScoreText` にそれぞれの Text/ TMP_Text を接続。
+   - UiCanvas の位置・アンカーは任意で OK。RunController とはシリアライズ参照でつながるだけなので、ヒエラルキー上は子でなくても動作します（整理のために子に置く例を上記に記載）。
+
+3. **GameView をカスタムする場合**
+   - `GameView` を継承したクラスを作り、`RunController._view` にそのコンポーネントを指定。
+   - アニメーション対象（リールの Transform、パーティクル、DOTween 用シーケンスなど）への参照フィールドを用意し、同じオブジェクトか子オブジェクトでシリアライズしておくと見失いにくいです。
+   - **演出のトリガー例:**
+     - `OnStateChangedAsync(GameViewModel.State state)`: ステート遷移時にまとめて演出を切り替える。例: Decision → Fire で発砲アニメ、GameOver → Result でリザルト画面表示。
+     - `OnRoundUpdated(GameViewModel vm)`: ラウンド更新時にランク、弾数、倍率の表示をアニメ付きで更新する。
+     - `OnResultUpdated(GameViewModel vm)`: スコア確定時にリザルトパネルを出し、DOTween でスコア増減を演出。
+   - **カスタム クラスの作り方のコツ:**
+     - 画面ごとに MonoBehaviour を分けたい場合、`MyGameView : GameView` を UiCanvas とは別の GameObject に置き、`RunController._view` に指定。UiBinder とは参照で接続されるため物理的に分離しても問題ありません。
+     - DOTween の Sequence を事前に組み立てておき、`OnStateChangedAsync` の中で `Play`/`Restart` する形にすると、フローと演出を同期しやすくなります。
+     - 大きなステート遷移演出（GameOver など）と軽微な数値更新演出を別メソッドに分け、`OnStateChangedAsync` と `OnRoundUpdated` から呼び分けると保守しやすいです。
+     - 非同期演出を追加する場合も、`GameView` 基底の公開メソッドシグネチャ（`OnStateChangedAsync` など）は変えず、内部で `async/await` を活用してください。
 
 ## 再生と確認ポイント
 - 再生開始で自動的に 1 ラウンド目が始まります。
