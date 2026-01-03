@@ -3,16 +3,31 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using OneMoreRoulette.Model;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OneMoreRoulette.UI
 {
     public sealed class RouletteGameView : GameView
     {
+        [Header("Bullet Slots")]
         [SerializeField] private RectTransform _bulletSpawnPoint;
         [SerializeField] private RectTransform[] _bulletSlots;
         [SerializeField] private float _loadDuration = 0.35f;
         [SerializeField] private float _loadStagger = 0.08f;
+
+        [Header("Result Popup")]
+        [SerializeField] private RectTransform _resultPopup;
+        [SerializeField] private Image _resultImage;
+        [SerializeField] private CanvasGroup _resultCanvasGroup;
+        [SerializeField] private Sprite _safeSmallSprite;
+        [SerializeField] private Sprite _safeMediumSprite;
+        [SerializeField] private Sprite _safeJackpotSprite;
+        [SerializeField] private Sprite _deadSprite;
+        [SerializeField] private float _popupDuration = 0.25f;
+        [SerializeField] private float _popupDisplayTime = 0.8f;
+        [SerializeField] private float _slideDistance = 50f;
 
         private readonly List<Tween> _tweens = new();
         private Vector2[] _slotDefaultPositions = null!;
@@ -22,6 +37,7 @@ namespace OneMoreRoulette.UI
         {
             CacheSlotPositions();
             ResetSlots();
+            HideResultPopup();
         }
 
         private void OnDisable()
@@ -33,6 +49,7 @@ namespace OneMoreRoulette.UI
         {
             _displayedBulletCount = 0;
             ResetSlots();
+            HideResultPopup();
             return UniTask.CompletedTask;
         }
 
@@ -91,6 +108,205 @@ namespace OneMoreRoulette.UI
         {
             // ロジック側は回転中も弾数を変化させないため、既存の表示を維持したままにする
             return UniTask.CompletedTask;
+        }
+
+        public override async UniTask PlayRewardPopupAsync(RewardType type, int gained, float multiplier, CancellationToken token)
+        {
+            var sprite = type switch
+            {
+                RewardType.Small => _safeSmallSprite,
+                RewardType.Medium => _safeMediumSprite,
+                RewardType.Jackpot => _safeJackpotSprite,
+                _ => _safeSmallSprite
+            };
+
+            var style = type switch
+            {
+                RewardType.Small => CutInStyle.FadeOnly,
+                RewardType.Medium => CutInStyle.SlideFromBottom,
+                RewardType.Jackpot => CutInStyle.DiagonalSlash,
+                _ => CutInStyle.FadeOnly
+            };
+
+            await ShowResultPopupAsync(sprite, style, token);
+        }
+
+        public override async UniTask PlayDeadAsync(CancellationToken token)
+        {
+            await ShowResultPopupAsync(_deadSprite, CutInStyle.DiagonalReverse, token);
+        }
+
+        private enum CutInStyle
+        {
+            FadeOnly,
+            SlideFromBottom,
+            DiagonalSlash,
+            DiagonalReverse
+        }
+
+        private async UniTask ShowResultPopupAsync(Sprite sprite, CutInStyle style, CancellationToken token)
+        {
+            if (_resultPopup == null || _resultImage == null)
+            {
+                return;
+            }
+
+            KillTweens();
+
+            _resultImage.sprite = sprite;
+            _resultPopup.gameObject.SetActive(true);
+
+            // スタイルに応じた初期位置・回転・スケール
+            var (startPos, startRot, startScale, inDuration, displayTime) = style switch
+            {
+                CutInStyle.FadeOnly => (
+                    Vector2.zero,
+                    0f,
+                    Vector3.one,
+                    _popupDuration * 0.8f,
+                    _popupDisplayTime * 0.8f
+                ),
+                CutInStyle.SlideFromBottom => (
+                    new Vector2(0, -_slideDistance),
+                    0f,
+                    Vector3.one,
+                    _popupDuration,
+                    _popupDisplayTime
+                ),
+                CutInStyle.DiagonalSlash => (
+                    new Vector2(-_slideDistance * 4f, -_slideDistance * 2f),
+                    -8f,
+                    Vector3.one * 1.3f,
+                    _popupDuration * 1.2f,
+                    _popupDisplayTime * 1.3f
+                ),
+                CutInStyle.DiagonalReverse => (
+                    new Vector2(_slideDistance * 4f, -_slideDistance * 2f),
+                    8f,
+                    Vector3.one * 1.2f,
+                    _popupDuration * 1.1f,
+                    _popupDisplayTime
+                ),
+                _ => (Vector2.zero, 0f, Vector3.one, _popupDuration, _popupDisplayTime)
+            };
+
+            _resultPopup.anchoredPosition = startPos;
+            _resultPopup.localRotation = Quaternion.Euler(0, 0, startRot);
+            _resultPopup.localScale = startScale;
+
+            if (_resultCanvasGroup != null)
+            {
+                _resultCanvasGroup.alpha = 0f;
+            }
+
+            // カットイン
+            var inSeq = DOTween.Sequence();
+
+            switch (style)
+            {
+                case CutInStyle.FadeOnly:
+                    if (_resultCanvasGroup != null)
+                    {
+                        inSeq.Append(_resultCanvasGroup.DOFade(1f, inDuration).SetEase(Ease.OutQuad));
+                    }
+                    break;
+
+                case CutInStyle.SlideFromBottom:
+                    inSeq.Append(_resultPopup.DOAnchorPos(Vector2.zero, inDuration).SetEase(Ease.OutExpo));
+                    if (_resultCanvasGroup != null)
+                    {
+                        inSeq.Join(_resultCanvasGroup.DOFade(1f, inDuration * 0.6f).SetEase(Ease.OutQuad));
+                    }
+                    break;
+
+                case CutInStyle.DiagonalSlash:
+                    inSeq.Append(_resultPopup.DOAnchorPos(Vector2.zero, inDuration).SetEase(Ease.OutExpo));
+                    inSeq.Join(_resultPopup.DORotate(Vector3.zero, inDuration).SetEase(Ease.OutExpo));
+                    inSeq.Join(_resultPopup.DOScale(1f, inDuration).SetEase(Ease.OutExpo));
+                    if (_resultCanvasGroup != null)
+                    {
+                        inSeq.Join(_resultCanvasGroup.DOFade(1f, inDuration * 0.4f).SetEase(Ease.OutQuad));
+                    }
+                    break;
+
+                case CutInStyle.DiagonalReverse:
+                    inSeq.Append(_resultPopup.DOAnchorPos(Vector2.zero, inDuration).SetEase(Ease.OutExpo));
+                    inSeq.Join(_resultPopup.DORotate(Vector3.zero, inDuration).SetEase(Ease.OutExpo));
+                    inSeq.Join(_resultPopup.DOScale(1f, inDuration).SetEase(Ease.OutExpo));
+                    if (_resultCanvasGroup != null)
+                    {
+                        inSeq.Join(_resultCanvasGroup.DOFade(1f, inDuration * 0.4f).SetEase(Ease.OutQuad));
+                    }
+                    break;
+            }
+
+            _tweens.Add(inSeq);
+            await WaitForTweenAsync(inSeq, token);
+
+            // 表示時間
+            await UniTask.Delay(TimeSpan.FromSeconds(displayTime), cancellationToken: token);
+
+            // カットアウト
+            var outSeq = DOTween.Sequence();
+            var outDuration = inDuration * 0.6f;
+
+            switch (style)
+            {
+                case CutInStyle.FadeOnly:
+                    if (_resultCanvasGroup != null)
+                    {
+                        outSeq.Append(_resultCanvasGroup.DOFade(0f, outDuration).SetEase(Ease.InQuad));
+                    }
+                    break;
+
+                case CutInStyle.SlideFromBottom:
+                    outSeq.Append(_resultPopup.DOAnchorPosY(_slideDistance, outDuration).SetEase(Ease.InQuad));
+                    if (_resultCanvasGroup != null)
+                    {
+                        outSeq.Join(_resultCanvasGroup.DOFade(0f, outDuration * 0.8f).SetEase(Ease.InQuad));
+                    }
+                    break;
+
+                case CutInStyle.DiagonalSlash:
+                    outSeq.Append(_resultPopup.DOAnchorPos(new Vector2(_slideDistance * 4f, _slideDistance * 2f), outDuration).SetEase(Ease.InExpo));
+                    outSeq.Join(_resultPopup.DORotate(new Vector3(0, 0, 8f), outDuration).SetEase(Ease.InQuad));
+                    if (_resultCanvasGroup != null)
+                    {
+                        outSeq.Join(_resultCanvasGroup.DOFade(0f, outDuration * 0.6f).SetEase(Ease.InQuad));
+                    }
+                    break;
+
+                case CutInStyle.DiagonalReverse:
+                    outSeq.Append(_resultPopup.DOAnchorPos(new Vector2(-_slideDistance * 4f, _slideDistance * 2f), outDuration).SetEase(Ease.InExpo));
+                    outSeq.Join(_resultPopup.DORotate(new Vector3(0, 0, -8f), outDuration).SetEase(Ease.InQuad));
+                    if (_resultCanvasGroup != null)
+                    {
+                        outSeq.Join(_resultCanvasGroup.DOFade(0f, outDuration * 0.6f).SetEase(Ease.InQuad));
+                    }
+                    break;
+            }
+
+            _tweens.Add(outSeq);
+            await WaitForTweenAsync(outSeq, token);
+
+            HideResultPopup();
+        }
+
+        private void HideResultPopup()
+        {
+            if (_resultPopup == null)
+            {
+                return;
+            }
+
+            _resultPopup.localScale = Vector3.one;
+            _resultPopup.anchoredPosition = Vector2.zero;
+            _resultPopup.localRotation = Quaternion.identity;
+            if (_resultCanvasGroup != null)
+            {
+                _resultCanvasGroup.alpha = 0f;
+            }
+            _resultPopup.gameObject.SetActive(false);
         }
 
         private void CacheSlotPositions()
