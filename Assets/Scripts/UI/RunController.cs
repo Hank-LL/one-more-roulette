@@ -70,6 +70,19 @@ namespace OneMoreRoulette.UI
             return HandleStopAsync(_runCts?.Token ?? CancellationToken.None);
         }
 
+        public UniTask OnRetryAsync()
+        {
+            // Result ステート以外では入力を無視して安全に抜ける
+            if (_stateMachine.CurrentState != GameState.Result)
+            {
+                LogState($"Result 以外のため Retry 入力を無視（state: {_stateMachine.CurrentState}）");
+                return UniTask.CompletedTask;
+            }
+
+            LogState("Retry 入力。新規ランを開始");
+            return StartRunAsync();
+        }
+
         // ラン全体の開始。設定を読み込み、最初のラウンドに入る
         public async UniTask StartRunAsync(int? seed = null)
         {

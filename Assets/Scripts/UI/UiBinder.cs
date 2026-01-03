@@ -13,6 +13,7 @@ namespace OneMoreRoulette.UI
         // Inspector で割り当てる UI 参照
         [SerializeField] private Button _oneMoreButton;
         [SerializeField] private Button _stopButton;
+        [SerializeField] private Button[] _retryButtons;
         [SerializeField] private TMP_Text _roundText;
         [SerializeField] private TMP_Text _deadText;
         [SerializeField] private TMP_Text _bulletText;
@@ -62,6 +63,17 @@ namespace OneMoreRoulette.UI
             {
                 _stopButton.onClick.AddListener(OnPressStop);
             }
+
+            if (_retryButtons != null)
+            {
+                foreach (var btn in _retryButtons)
+                {
+                    if (btn != null)
+                    {
+                        btn.onClick.AddListener(OnPressRetry);
+                    }
+                }
+            }
         }
 
         private void UnwireButtons()
@@ -75,6 +87,17 @@ namespace OneMoreRoulette.UI
             {
                 _stopButton.onClick.RemoveListener(OnPressStop);
             }
+
+            if (_retryButtons != null)
+            {
+                foreach (var btn in _retryButtons)
+                {
+                    if (btn != null)
+                    {
+                        btn.onClick.RemoveListener(OnPressRetry);
+                    }
+                }
+            }
         }
 
         private void OnPressOneMore()
@@ -85,6 +108,11 @@ namespace OneMoreRoulette.UI
         private void OnPressStop()
         {
             _controller?.OnStopAsync().Forget();
+        }
+
+        private void OnPressRetry()
+        {
+            _controller?.OnRetryAsync().Forget();
         }
 
         private void BindViewModel()
@@ -108,9 +136,31 @@ namespace OneMoreRoulette.UI
 
         private void OnStateChanged(GameState state)
         {
-            var interactable = state == GameState.Decision;
-            _oneMoreButton.interactable = interactable;
-            _stopButton.interactable = interactable;
+            var isDecision = state == GameState.Decision;
+            var isResult = state == GameState.Result;
+
+            if (_oneMoreButton != null)
+            {
+                _oneMoreButton.interactable = isDecision;
+                _oneMoreButton.gameObject.SetActive(!isResult);
+            }
+
+            if (_stopButton != null)
+            {
+                _stopButton.interactable = isDecision;
+                _stopButton.gameObject.SetActive(!isResult);
+            }
+
+            if (_retryButtons != null)
+            {
+                foreach (var btn in _retryButtons)
+                {
+                    if (btn != null)
+                    {
+                        btn.gameObject.SetActive(isResult);
+                    }
+                }
+            }
         }
 
         private void DisposeBindings()
