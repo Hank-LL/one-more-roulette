@@ -78,7 +78,7 @@ namespace OneMoreRoulette.UI
                 seq.SetDelay(_loadStagger * (i - startIndex));
                 seq.OnKill(() => slot.anchoredPosition = defaultPos);
                 _tweens.Add(seq);
-                tasks.Add(seq.ToUniTask(true, token: token));
+                tasks.Add(WaitForTweenAsync(seq, token));
             }
 
             if (tasks.Count > 0)
@@ -159,6 +159,28 @@ namespace OneMoreRoulette.UI
             }
 
             _tweens.Clear();
+        }
+
+        private static async UniTask WaitForTweenAsync(Tween tween, CancellationToken token)
+        {
+            if (tween == null || !tween.IsActive())
+            {
+                return;
+            }
+
+            var tcs = new UniTaskCompletionSource();
+
+            tween.OnComplete(() => tcs.TrySetResult());
+            tween.OnKill(() => tcs.TrySetResult());
+
+            await using (token.Register(() =>
+            {
+                tween.Kill();
+                tcs.TrySetCanceled(token);
+            }))
+            {
+                await tcs.Task;
+            }
         }
     }
 }
