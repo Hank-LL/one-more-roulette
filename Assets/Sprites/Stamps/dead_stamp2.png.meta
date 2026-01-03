@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: ac79a367eb4c64445a9f1888f9054ae7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6609812822767143128
+    second: dead_stamp2_0
+  - first:
+      213: -3948655049546382623
+    second: dead_stamp2_1
+  - first:
+      213: 4338870725961771964
+    second: dead_stamp2_2
+  - first:
+      213: 932045819147997887
+    second: dead_stamp2_3
+  - first:
+      213: 1864684970951732299
+    second: dead_stamp2_4
+  - first:
+      213: 1485614487695727011
+    second: dead_stamp2_5
+  - first:
+      213: -2594349999234275588
+    second: dead_stamp2_6
+  - first:
+      213: 8349140313094222606
+    second: dead_stamp2_7
+  - first:
+      213: 1179116955410273924
+    second: dead_stamp2_8
+  - first:
+      213: -8305401172599158243
+    second: dead_stamp2_9
+  - first:
+      213: 936218358901538483
+    second: dead_stamp2_10
+  - first:
+      213: -2377412378442734469
+    second: dead_stamp2_11
+  - first:
+      213: 5694250895306793786
+    second: dead_stamp2_12
+  - first:
+      213: -4839974551571237067
+    second: dead_stamp2_13
+  - first:
+      213: 332051558595566764
+    second: dead_stamp2_14
+  - first:
+      213: 8455103499271719860
+    second: dead_stamp2_15
+  - first:
+      213: 520131143488531410
+    second: dead_stamp2_16
+  - first:
+      213: 4302832545526988868
+    second: dead_stamp2_17
+  - first:
+      213: 4909982729405975461
+    second: dead_stamp2_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dead_stamp2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1
+        width: 1461
+        height: 1023
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 827742b024a3544a0800000000000000
+      internalID: -6609812822767143128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 894
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e24c3f372f8339c0800000000000000
+      internalID: -3948655049546382623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 902
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbbea4bdfe3c63c30800000000000000
+      internalID: 4338870725961771964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_3
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 902
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb254bcfbba4fec00800000000000000
+      internalID: 932045819147997887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_4
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 898
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c669ff911b0e910800000000000000
+      internalID: 1864684970951732299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 893
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a917446186fd9410800000000000000
+      internalID: 1485614487695727011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 903
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf62b90db640ffbd0800000000000000
+      internalID: -2594349999234275588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_7
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 857
+        width: 9
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e03ffdd01ea1ed370800000000000000
+      internalID: 8349140313094222606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_8
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 891
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4869edbaf901d5010800000000000000
+      internalID: 1179116955410273924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_9
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 882
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a4d1e23a94dbc80800000000000000
+      internalID: -8305401172599158243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 891
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be768a13ad1efc00800000000000000
+      internalID: 936218358901538483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_11
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 867
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b74ed42b90cb10fd0800000000000000
+      internalID: -2377412378442734469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_12
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 839
+        width: 49
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3326b4150b060f40800000000000000
+      internalID: 5694250895306793786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_13
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 718
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5377aa3e9c4f4dcb0800000000000000
+      internalID: -4839974551571237067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_14
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 520
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac143d122fab9400800000000000000
+      internalID: 332051558595566764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_15
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 239
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bbc045e5df865570800000000000000
+      internalID: 8455103499271719860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_16
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 233
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db604ce480e73700800000000000000
+      internalID: 520131143488531410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_17
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 241
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440402c176bb6bb30800000000000000
+      internalID: 4302832545526988868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_stamp2_18
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 226
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5abcb873743c32440800000000000000
+      internalID: 4909982729405975461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dead_stamp2_0: -6609812822767143128
+      dead_stamp2_1: -3948655049546382623
+      dead_stamp2_10: 936218358901538483
+      dead_stamp2_11: -2377412378442734469
+      dead_stamp2_12: 5694250895306793786
+      dead_stamp2_13: -4839974551571237067
+      dead_stamp2_14: 332051558595566764
+      dead_stamp2_15: 8455103499271719860
+      dead_stamp2_16: 520131143488531410
+      dead_stamp2_17: 4302832545526988868
+      dead_stamp2_18: 4909982729405975461
+      dead_stamp2_2: 4338870725961771964
+      dead_stamp2_3: 932045819147997887
+      dead_stamp2_4: 1864684970951732299
+      dead_stamp2_5: 1485614487695727011
+      dead_stamp2_6: -2594349999234275588
+      dead_stamp2_7: 8349140313094222606
+      dead_stamp2_8: 1179116955410273924
+      dead_stamp2_9: -8305401172599158243
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
