@@ -11,9 +11,12 @@ namespace OneMoreRoulette.UI
     public class UiBinder : MonoBehaviour, IDisposable
     {
         // Inspector で割り当てる UI 参照
+        [Header("Game Buttons")]
         [SerializeField] private Button _oneMoreButton;
         [SerializeField] private Button _stopButton;
         [SerializeField] private Button[] _retryButtons;
+
+        [Header("Game HUD")]
         [SerializeField] private TMP_Text _roundText;
         [SerializeField] private TMP_Text _deadText;
         [SerializeField] private TMP_Text _bulletText;
@@ -22,6 +25,10 @@ namespace OneMoreRoulette.UI
         [SerializeField] private TMP_Text _carryNextText;
         [SerializeField] private TMP_Text _roundScoreText;
         [SerializeField] private TMP_Text _totalScoreText;
+
+        [Header("Result Window")]
+        [SerializeField] private GameObject _resultWindow;
+        [SerializeField] private TMP_Text _resultScoreText;
 
         private GameViewModel _viewModel;
         private RunController _controller;
@@ -44,6 +51,12 @@ namespace OneMoreRoulette.UI
             _controller = controller;
             DisposeBindings();
             BindViewModel();
+
+            // ResultWindowは初期状態で非表示
+            if (_resultWindow != null)
+            {
+                _resultWindow.SetActive(false);
+            }
         }
 
         public void Dispose()
@@ -161,6 +174,28 @@ namespace OneMoreRoulette.UI
                     }
                 }
             }
+
+            // Result Windowの表示制御
+            if (_resultWindow != null)
+            {
+                _resultWindow.SetActive(isResult);
+
+                if (isResult)
+                {
+                    UpdateResultWindow();
+                }
+            }
+        }
+
+        private void UpdateResultWindow()
+        {
+            if (_viewModel == null)
+            {
+                return;
+            }
+
+            var totalScore = _viewModel.TotalScore.Value;
+            SetText(_resultScoreText, $"{totalScore:N0}");
         }
 
         private void DisposeBindings()
