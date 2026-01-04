@@ -139,13 +139,13 @@ namespace OneMoreRoulette.UI
                 return;
             }
 
-            _disposables.Add(_viewModel.RoundIndex.Subscribe(x => SetText(_roundText, $"ROUND {x}")));
-            _disposables.Add(_viewModel.DeadCount.Subscribe(x => SetText(_deadText, $"DEAD {x}/2")));
+            _disposables.Add(_viewModel.RoundIndex.Subscribe(x => SetText(_roundText, $"Round {x}/5")));
+            _disposables.Add(_viewModel.DeadCount.Subscribe(x => SetText(_deadText, $"{x}/2")));
             _disposables.Add(_viewModel.BulletCount.Subscribe(x => SetText(_bulletText, $"BULLET {x}/6")));
             _disposables.Add(_viewModel.Rank.Subscribe(x => SetText(_rankText, $"RANK {x}")));
-            _disposables.Add(_viewModel.Multiplier.Subscribe(x => SetText(_multiplierText, $"x{ x:F2}")));
+            _disposables.Add(_viewModel.Multiplier.Subscribe(x => SetText(_multiplierText, $"Multi x{x:F2}")));
             _disposables.Add(_viewModel.CarryNextMultiplier.Subscribe(x => SetText(_carryNextText, $"NEXT x{x:F2}")));
-            _disposables.Add(_viewModel.RoundScore.Subscribe(x => SetText(_roundScoreText, x.ToString())));
+            _disposables.Add(_viewModel.RoundScore.Subscribe(x => SetText(_roundScoreText, $"RoundScore {x}")));
             _disposables.Add(_viewModel.TotalScore.Subscribe(x => SetText(_totalScoreText, x.ToString())));
             _disposables.Add(_viewModel.State.Subscribe(OnStateChanged));
         }
@@ -165,17 +165,6 @@ namespace OneMoreRoulette.UI
             {
                 _stopButton.interactable = isDecision;
                 _stopButton.gameObject.SetActive(!isResult);
-            }
-
-            if (_retryButtons != null)
-            {
-                foreach (var btn in _retryButtons)
-                {
-                    if (btn != null)
-                    {
-                        btn.gameObject.SetActive(isResult);
-                    }
-                }
             }
 
             // Result Windowの表示制御

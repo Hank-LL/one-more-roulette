@@ -72,13 +72,6 @@ namespace OneMoreRoulette.UI
 
         public UniTask OnRetryAsync()
         {
-            // Result ステート以外では入力を無視して安全に抜ける
-            if (_stateMachine.CurrentState != GameState.Result)
-            {
-                LogState($"Result 以外のため Retry 入力を無視（state: {_stateMachine.CurrentState}）");
-                return UniTask.CompletedTask;
-            }
-
             LogState("Retry 入力。新規ランを開始");
             return StartRunAsync();
         }
