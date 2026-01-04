@@ -125,10 +125,10 @@ TextureImporter:
       name: fire_button_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1494
-        height: 474
+        x: 7
+        y: 2
+        width: 788
+        height: 284
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: fire_button_1
       rect:
         serializedVersion: 2
-        x: 494
-        y: 376
-        width: 27
-        height: 98
+        x: 133
+        y: 259
+        width: 20
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,8 +169,8 @@ TextureImporter:
       name: fire_button_2
       rect:
         serializedVersion: 2
-        x: 551
-        y: 372
+        x: 183
+        y: 255
         width: 17
         height: 19
       alignment: 0
@@ -191,10 +191,10 @@ TextureImporter:
       name: fire_button_3
       rect:
         serializedVersion: 2
-        x: 948
-        y: 362
-        width: 145
-        height: 115
+        x: 662
+        y: 245
+        width: 30
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
