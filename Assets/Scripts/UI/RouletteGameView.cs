@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using OneMoreRoulette.Core;
 using OneMoreRoulette.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -89,6 +90,9 @@ namespace OneMoreRoulette.UI
                 slot.localScale = Vector3.zero;
                 slot.anchoredPosition = startPos;
 
+                // 装填SE
+                AudioManager.Instance?.PlayBulletLoad();
+
                 var seq = DOTween.Sequence();
                 seq.Append(slot.DOAnchorPos(defaultPos, _loadDuration).SetEase(Ease.OutQuad));
                 seq.Join(slot.DOScale(1f, _loadDuration).SetEase(Ease.OutBack));
@@ -112,6 +116,9 @@ namespace OneMoreRoulette.UI
 
         public override async UniTask PlayRewardPopupAsync(RewardType type, int gained, float multiplier, CancellationToken token)
         {
+            // Safe SE（空砲音）
+            AudioManager.Instance?.PlaySafe();
+
             var sprite = type switch
             {
                 RewardType.Small => _safeSmallSprite,
@@ -133,6 +140,9 @@ namespace OneMoreRoulette.UI
 
         public override async UniTask PlayDeadAsync(CancellationToken token)
         {
+            // Dead SE（銃声）
+            AudioManager.Instance?.PlayDead();
+
             await ShowResultPopupAsync(_deadSprite, CutInStyle.DiagonalReverse, token);
         }
 

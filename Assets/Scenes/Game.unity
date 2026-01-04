@@ -2146,8 +2146,8 @@ MonoBehaviour:
   _carryNextText: {fileID: 863962017}
   _roundScoreText: {fileID: 928515086}
   _totalScoreText: {fileID: 236065927}
-  _resultWindow: {fileID: 0}
-  _resultScoreText: {fileID: 0}
+  _resultWindow: {fileID: 1161190601}
+  _resultScoreText: {fileID: 1471066507}
 --- !u!114 &1012207624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2840,7 +2840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1324713768
 RectTransform:
   m_ObjectHideFlags: 0

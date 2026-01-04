@@ -115,16 +115,19 @@ namespace OneMoreRoulette.UI
 
         private void OnPressOneMore()
         {
+            AudioManager.Instance?.PlayOneMore();
             _controller?.OnOneMoreAsync().Forget();
         }
 
         private void OnPressStop()
         {
+            AudioManager.Instance?.PlayFire();
             _controller?.OnStopAsync().Forget();
         }
 
         private void OnPressRetry()
         {
+            AudioManager.Instance?.PlayButtonClick();
             _controller?.OnRetryAsync().Forget();
         }
 
