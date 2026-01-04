@@ -5,27 +5,6 @@ TextureImporter:
   - first:
       213: -5060791155156541731
     second: retry_button2_0
-  - first:
-      213: 1934109932808788040
-    second: retry_button2_1
-  - first:
-      213: -4933516614231589733
-    second: retry_button2_2
-  - first:
-      213: -6667172061902677038
-    second: retry_button2_3
-  - first:
-      213: 7791349461671241851
-    second: retry_button2_4
-  - first:
-      213: 7195049114823224844
-    second: retry_button2_5
-  - first:
-      213: 2776121432840959102
-    second: retry_button2_6
-  - first:
-      213: 3427295758555918236
-    second: retry_button2_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,10 +116,10 @@ TextureImporter:
       name: retry_button2_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 0
-        width: 1515
-        height: 1024
+        width: 848
+        height: 285
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,160 +130,6 @@ TextureImporter:
       bones: []
       spriteID: dde9472f14574c9b0800000000000000
       internalID: -5060791155156541731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_1
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 736
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8485f9d8cb657da10800000000000000
-      internalID: 1934109932808788040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_2
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 712
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9cfc3b37c0a88bb0800000000000000
-      internalID: -4933516614231589733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_3
-      rect:
-        serializedVersion: 2
-        x: 1041
-        y: 718
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2dbd1e975527973a0800000000000000
-      internalID: -6667172061902677038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_4
-      rect:
-        serializedVersion: 2
-        x: 1203
-        y: 651
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7868d71e0f602c60800000000000000
-      internalID: 7791349461671241851
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_5
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 622
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0ee6868c03f9d360800000000000000
-      internalID: 7195049114823224844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_6
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 320
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e7475d11cb3c68620800000000000000
-      internalID: 2776121432840959102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: retry_button2_7
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 272
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9fade47553309f20800000000000000
-      internalID: 3427295758555918236
       vertices: []
       indices: 
       edges: []
@@ -324,13 +149,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       retry_button2_0: -5060791155156541731
-      retry_button2_1: 1934109932808788040
-      retry_button2_2: -4933516614231589733
-      retry_button2_3: -6667172061902677038
-      retry_button2_4: 7791349461671241851
-      retry_button2_5: 7195049114823224844
-      retry_button2_6: 2776121432840959102
-      retry_button2_7: 3427295758555918236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
