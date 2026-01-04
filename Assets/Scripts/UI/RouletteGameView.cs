@@ -30,6 +30,17 @@ namespace OneMoreRoulette.UI
         [SerializeField] private float _popupDisplayTime = 0.8f;
         [SerializeField] private float _slideDistance = 50f;
 
+        [Header("Coin Effect")]
+        [SerializeField] private RectTransform _coinContainer;
+        [SerializeField] private GameObject _coinPrefab;
+        [SerializeField] private RectTransform _coinTarget;
+        [SerializeField] private int _coinCountSmall = 5;
+        [SerializeField] private int _coinCountMedium = 12;
+        [SerializeField] private int _coinCountJackpot = 25;
+        [SerializeField] private float _coinSpawnRadius = 100f;
+        [SerializeField] private float _coinFlyDuration = 0.6f;
+        [SerializeField] private float _coinSpawnStagger = 0.05f;
+
         private readonly List<Tween> _tweens = new();
         private Vector2[] _slotDefaultPositions = null!;
         private int _displayedBulletCount;
@@ -135,7 +146,19 @@ namespace OneMoreRoulette.UI
                 _ => CutInStyle.FadeOnly
             };
 
-            await ShowResultPopupAsync(sprite, style, token);
+            var coinCount = type switch
+            {
+                RewardType.Small => _coinCountSmall,
+                RewardType.Medium => _coinCountMedium,
+                RewardType.Jackpot => _coinCountJackpot,
+                _ => _coinCountSmall
+            };
+
+            // ポップアップとコイン演出を並行実行
+            await UniTask.WhenAll(
+                ShowResultPopupAsync(sprite, style, token),
+                SpawnCoinsAsync(coinCount, token)
+            );
         }
 
         public override async UniTask PlayDeadAsync(CancellationToken token)
@@ -144,6 +167,81 @@ namespace OneMoreRoulette.UI
             AudioManager.Instance?.PlayDead();
 
             await ShowResultPopupAsync(_deadSprite, CutInStyle.DiagonalReverse, token);
+        }
+
+        private async UniTask SpawnCoinsAsync(int count, CancellationToken token)
+        {
+            if (_coinPrefab == null || _coinContainer == null || _coinTarget == null)
+            {
+                return;
+            }
+
+            var tasks = new List<UniTask>(count);
+            var spawnCenter = _resultPopup != null ? _resultPopup.anchoredPosition : Vector2.zero;
+
+            for (var i = 0; i < count; i++)
+            {
+                var coin = Instantiate(_coinPrefab, _coinContainer);
+                var coinRect = coin.GetComponent<RectTransform>();
+                if (coinRect == null)
+                {
+                    Destroy(coin);
+                    continue;
+                }
+
+                // ランダムな位置に出現
+                var randomOffset = UnityEngine.Random.insideUnitCircle * _coinSpawnRadius;
+                var startPos = spawnCenter + new Vector2(randomOffset.x, randomOffset.y);
+                coinRect.anchoredPosition = startPos;
+                coinRect.localScale = Vector3.zero;
+
+                // ターゲット位置を取得
+                var targetPos = _coinTarget.anchoredPosition;
+
+                // 遅延付きでアニメーション開始
+                var delay = i * _coinSpawnStagger;
+                var coinTask = AnimateCoinAsync(coinRect, coin, startPos, targetPos, delay, token);
+                tasks.Add(coinTask);
+            }
+
+            if (tasks.Count > 0)
+            {
+                await UniTask.WhenAll(tasks);
+            }
+        }
+
+        private async UniTask AnimateCoinAsync(RectTransform coinRect, GameObject coin, Vector2 startPos, Vector2 targetPos, float delay, CancellationToken token)
+        {
+            try
+            {
+                // 出現アニメーション
+                var appearSeq = DOTween.Sequence();
+                appearSeq.AppendInterval(delay);
+                appearSeq.Append(coinRect.DOScale(1f, 0.15f).SetEase(Ease.OutBack));
+                _tweens.Add(appearSeq);
+                await WaitForTweenAsync(appearSeq, token);
+
+                // 少し浮遊
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f + UnityEngine.Random.Range(0f, 0.15f)), cancellationToken: token);
+
+                // ターゲットへ飛んでいく
+                var flySeq = DOTween.Sequence();
+                flySeq.Append(coinRect.DOAnchorPos(targetPos, _coinFlyDuration).SetEase(Ease.InQuad));
+                flySeq.Join(coinRect.DOScale(0.3f, _coinFlyDuration).SetEase(Ease.InQuad));
+                _tweens.Add(flySeq);
+                await WaitForTweenAsync(flySeq, token);
+
+                // SE再生
+                AudioManager.Instance?.PlayReward();
+            }
+            finally
+            {
+                // 必ずコインを破棄
+                if (coin != null)
+                {
+                    Destroy(coin);
+                }
+            }
         }
 
         private enum CutInStyle

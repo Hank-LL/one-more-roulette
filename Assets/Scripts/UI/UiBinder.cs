@@ -16,19 +16,21 @@ namespace OneMoreRoulette.UI
         [SerializeField] private Button _stopButton;
         [SerializeField] private Button[] _retryButtons;
 
-        [Header("Game HUD")]
-        [SerializeField] private TMP_Text _roundText;
+        [Header("Game HUD - Static Text")]
         [SerializeField] private TMP_Text _deadText;
         [SerializeField] private TMP_Text _bulletText;
-        [SerializeField] private TMP_Text _rankText;
-        [SerializeField] private TMP_Text _multiplierText;
         [SerializeField] private TMP_Text _carryNextText;
-        [SerializeField] private TMP_Text _roundScoreText;
-        [SerializeField] private TMP_Text _totalScoreText;
+
+        [Header("Game HUD - Animated")]
+        [SerializeField] private CountUpText _roundCountUp;
+        [SerializeField] private CountUpText _rankCountUp;
+        [SerializeField] private CountUpText _multiplierCountUp;
+        [SerializeField] private CountUpText _roundScoreCountUp;
+        [SerializeField] private CountUpText _totalScoreCountUp;
 
         [Header("Result Window")]
         [SerializeField] private GameObject _resultWindow;
-        [SerializeField] private TMP_Text _resultScoreText;
+        [SerializeField] private CountUpText _resultScoreCountUp;
 
         private GameViewModel _viewModel;
         private RunController _controller;
@@ -139,14 +141,18 @@ namespace OneMoreRoulette.UI
                 return;
             }
 
-            _disposables.Add(_viewModel.RoundIndex.Subscribe(x => SetText(_roundText, $"Round {x}/5")));
+            // カウントアップアニメーション付き
+            _disposables.Add(_viewModel.RoundIndex.Subscribe(x => _roundCountUp?.SetValue(x)));
+            _disposables.Add(_viewModel.Rank.Subscribe(x => _rankCountUp?.SetValue(x)));
+            _disposables.Add(_viewModel.Multiplier.Subscribe(x => _multiplierCountUp?.SetValue(x)));
+            _disposables.Add(_viewModel.RoundScore.Subscribe(x => _roundScoreCountUp?.SetValue(x)));
+            _disposables.Add(_viewModel.TotalScore.Subscribe(x => _totalScoreCountUp?.SetValue(x)));
+
+            // 静的テキスト
             _disposables.Add(_viewModel.DeadCount.Subscribe(x => SetText(_deadText, $"{x}/2")));
-            _disposables.Add(_viewModel.BulletCount.Subscribe(x => SetText(_bulletText, $"BULLET {x}/6")));
-            _disposables.Add(_viewModel.Rank.Subscribe(x => SetText(_rankText, $"RANK {x}")));
-            _disposables.Add(_viewModel.Multiplier.Subscribe(x => SetText(_multiplierText, $"Multi x{x:F2}")));
-            _disposables.Add(_viewModel.CarryNextMultiplier.Subscribe(x => SetText(_carryNextText, $"NEXT x{x:F2}")));
-            _disposables.Add(_viewModel.RoundScore.Subscribe(x => SetText(_roundScoreText, $"RoundScore {x}")));
-            _disposables.Add(_viewModel.TotalScore.Subscribe(x => SetText(_totalScoreText, x.ToString())));
+            _disposables.Add(_viewModel.BulletCount.Subscribe(x => SetText(_bulletText, $"{x}/6")));
+            _disposables.Add(_viewModel.CarryNextMultiplier.Subscribe(x => SetText(_carryNextText, $"x{x:F2}")));
+
             _disposables.Add(_viewModel.State.Subscribe(OnStateChanged));
         }
 
@@ -187,7 +193,10 @@ namespace OneMoreRoulette.UI
             }
 
             var totalScore = _viewModel.TotalScore.Value;
-            SetText(_resultScoreText, $"{totalScore:N0}");
+            if (_resultScoreCountUp != null)
+            {
+                _resultScoreCountUp.SetValue(totalScore);
+            }
         }
 
         private void DisposeBindings()
