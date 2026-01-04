@@ -190,6 +190,10 @@ namespace OneMoreRoulette.UI
             UpdateViewModelState();
             LogState(isDeadLimit ? "死亡上限到達でゲームオーバー" : "最大ラウンド到達でゲームクリア");
             await _view.PlayGameOverAsync(isDeadLimit, token);
+
+            // ランキングにスコアを送信
+            RankingService.Instance?.SendScore(_model.TotalScore);
+
             _stateMachine.SetState(GameState.Result);
             UpdateViewModelState();
         }
