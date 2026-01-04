@@ -350,7 +350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300.2, y: 171.7}
+  m_AnchoredPosition: {x: 306, y: 171.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236065927
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ff74865a462c0542802c1d7b8d18c7c, type: 2}
   m_sharedMaterial: {fileID: -876470771731796150, guid: 5ff74865a462c0542802c1d7b8d18c7c, type: 2}
@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 328582561}
   - component: {fileID: 328582560}
   - component: {fileID: 328582559}
+  - component: {fileID: 328582562}
   m_Layer: 5
   m_Name: StopButton
   m_TagString: Untagged
@@ -670,6 +671,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328582557}
   m_CullTransparentMesh: 1
+--- !u!114 &328582562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328582557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513126f951dcb9e4287bf1a5045f4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OneMoreRoulette.UI.ButtonPressEffect
+  _pressedScale: 0.95
+  _pressDuration: 0.08
+  _releaseDuration: 0.1
+  _pressEase: 6
+  _releaseEase: 27
+  _useYOffset: 0
+  _pressedYOffset: -5
 --- !u!1 &337324783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1731,7 @@ MonoBehaviour:
   _bgmSource: {fileID: 1622607503}
   _seSource: {fileID: 2045195678}
   _gameBgm: {fileID: 8300000, guid: b559c3c95d8966846bd39c037456431c, type: 3}
-  _buttonClickSe: {fileID: 8300000, guid: 04b89c84610335242a81fc2632b05f37, type: 3}
+  _buttonClickSe: {fileID: 8300000, guid: 837f6f005f80ecb4fbe92d652c1d6f6a, type: 3}
   _oneMoreSe: {fileID: 8300000, guid: 24df5d3c093c3f043a8fe4a1cc098801, type: 3}
   _fireSe: {fileID: 8300000, guid: 5dc7a0187a0ecb345a97d9856aad0928, type: 3}
   _safeSe: {fileID: 8300000, guid: 8d40c36e4ebf069449d68426fd4dd672, type: 3}
@@ -2938,6 +2958,7 @@ GameObject:
   - component: {fileID: 1224703856}
   - component: {fileID: 1224703855}
   - component: {fileID: 1224703854}
+  - component: {fileID: 1224703857}
   m_Layer: 5
   m_Name: OneMoreButton
   m_TagString: Untagged
@@ -3047,6 +3068,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224703852}
   m_CullTransparentMesh: 1
+--- !u!114 &1224703857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224703852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513126f951dcb9e4287bf1a5045f4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OneMoreRoulette.UI.ButtonPressEffect
+  _pressedScale: 0.95
+  _pressDuration: 0.08
+  _releaseDuration: 0.1
+  _pressEase: 6
+  _releaseEase: 27
+  _useYOffset: 0
+  _pressedYOffset: -5
 --- !u!1 &1243477578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3501,9 +3541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ff74865a462c0542802c1d7b8d18c7c, type: 2}
   m_sharedMaterial: {fileID: -876470771731796150, guid: 5ff74865a462c0542802c1d7b8d18c7c, type: 2}
@@ -3617,6 +3655,7 @@ GameObject:
   - component: {fileID: 1526065741}
   - component: {fileID: 1526065740}
   - component: {fileID: 1526065743}
+  - component: {fileID: 1526065744}
   m_Layer: 5
   m_Name: RetryButton2
   m_TagString: Untagged
@@ -3747,6 +3786,25 @@ MonoBehaviour:
   _scaleAmount: 0.05
   _scaleDuration: 1
   _randomizeStartPhase: 1
+--- !u!114 &1526065744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526065738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513126f951dcb9e4287bf1a5045f4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OneMoreRoulette.UI.ButtonPressEffect
+  _pressedScale: 0.9
+  _pressDuration: 0.1
+  _releaseDuration: 0.15
+  _pressEase: 6
+  _releaseEase: 27
+  _useYOffset: 0
+  _pressedYOffset: -5
 --- !u!1 &1555990982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4237,6 +4295,7 @@ GameObject:
   - component: {fileID: 1753341664}
   - component: {fileID: 1753341663}
   - component: {fileID: 1753341662}
+  - component: {fileID: 1753341665}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -4346,6 +4405,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753341660}
   m_CullTransparentMesh: 1
+--- !u!114 &1753341665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753341660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513126f951dcb9e4287bf1a5045f4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OneMoreRoulette.UI.ButtonPressEffect
+  _pressedScale: 0.95
+  _pressDuration: 0.08
+  _releaseDuration: 0.1
+  _pressEase: 6
+  _releaseEase: 27
+  _useYOffset: 0
+  _pressedYOffset: -5
 --- !u!1 &1780013009
 GameObject:
   m_ObjectHideFlags: 0
