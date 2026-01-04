@@ -111,7 +111,9 @@ namespace OneMoreRoulette.Model
         // セーフ時の報酬テーブル抽選
         public Reward RollSafeReward(int k)
         {
-            var band = GetRewardBand(k);
+            // k=0 の場合は k=1 として扱う（仕様: k = max(1, BulletCount)）
+            var clampedK = Math.Max(1, k);
+            var band = GetRewardBand(clampedK);
             if (band.Entries == null || band.Entries.Length == 0)
             {
                 throw new InvalidOperationException($"Reward band for k={k} has no entries.");
